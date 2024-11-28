@@ -29,6 +29,32 @@ class OrdersController {
     }
 }
 
+class Loans {
+    String DisplayMessageFor (Loan loan) {
+        var message = "";
+        if (loan instanceof SecuredLoan) {
+            var sl = (SecuredLoan) loan;
+            message = "You got a loan";
+        }
+        if (loan instanceof UnsecuredLoan) {
+            var usl = (UnsecuredLoan) loan;
+            message = "ouch! that " + usl.interests() + " is gonna hurt";
+        }
+
+        return message;
+    }
+}
+
+sealed interface Loan permits SecuredLoan, UnsecuredLoan {
+
+}
+
+final class SecuredLoan implements Loan {
+
+}
+
+record UnsecuredLoan (float interests) implements Loan {}
+
 interface OrderRepository extends ListCrudRepository<Order, Integer> {}
 
 @Table("orders_line_items")
