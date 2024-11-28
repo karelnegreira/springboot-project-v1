@@ -31,15 +31,10 @@ class OrdersController {
 
 class Loans {
     String DisplayMessageFor (Loan loan) {
-        var message = "";
-        if (loan instanceof SecuredLoan) {
-            var sl = (SecuredLoan) loan;
-            message = "You got a loan";
-        }
-        if (loan instanceof UnsecuredLoan) {
-            var usl = (UnsecuredLoan) loan;
-            message = "ouch! that " + usl.interests() + " is gonna hurt";
-        }
+        var message = switch (loan) {
+            case UnsecuredLoan(var interest) -> "ouch! that " + interest + " is gonna hurt";
+            case SecuredLoan s1 -> "Good job, you got a loan";
+        };
 
         return message;
     }
