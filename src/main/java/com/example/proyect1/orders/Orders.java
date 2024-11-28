@@ -4,6 +4,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Set;
@@ -18,6 +20,12 @@ class OrdersController {
 
     OrdersController(OrderRepository repo) {
         this.repository = repo;
+    }
+
+    @PostMapping
+    void create(@RequestBody Order order) {
+        var saved = this.repository.save(order);
+        System.out.println("Saved [" + saved + " ]");
     }
 }
 
