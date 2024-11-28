@@ -33,4 +33,6 @@ interface OrderRepository extends ListCrudRepository<Order, Integer> {}
 
 @Table("orders_line_items")
 record LineItem (@Id Integer id, int product, int quantity) {}
+
+@Table("orders")
 record Order(@Id Integer id, Set<LineItem> lineItems) {}
