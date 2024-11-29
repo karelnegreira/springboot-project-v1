@@ -28,7 +28,12 @@ class OrdersController {
         System.out.println("Saved [" + saved + " ]");
     }
 }
-
+//java 21,
+//Object Oriented Programming
+//sealed types
+//pattern matching
+//smart switch
+//records
 class Loans {
     String DisplayMessageFor (Loan loan) {
         var message = switch (loan) {
